@@ -10,6 +10,7 @@ import Data.Int ( Int64 )
 
 data Side = Bid | Ask deriving (Generic, Show)
 
+-- there should be a way to automate this conversion..
 instance FromField Side where
   parseField "Bid" = pure Bid
   parseField "Ask" = pure Ask
