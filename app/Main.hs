@@ -1,8 +1,3 @@
-{-# LANGUAGE CPP #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-
 module Main where
 
 import Data.Aeson (encode)
@@ -23,4 +18,3 @@ main = do
   case result of
     Left error -> putStrLn error
     Right matches -> putStr $ encode $ getMatchResults matches
-
