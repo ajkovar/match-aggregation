@@ -1,0 +1,42 @@
+cabal-version:      2.4
+name:               match-aggretation
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+
+-- The license under which the package is released.
+-- license:
+author:             Alex Kovar
+maintainer:         ajkovar@gmail.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+executable match-aggretation
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    other-modules:
+      Match,
+      ProductResult
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.14.1.0,
+                      vector >= 0.12.1 && < 0.13,
+                      bytestring >= 0.10.10 && < 0.11,
+                      cassava >= 0.5.2 && < 0.6,
+                      monoidal-containers,
+                      aeson >= 1.5.3 && < 1.6,
+                      transformers
+    hs-source-dirs:   app
+    default-language: Haskell2010
