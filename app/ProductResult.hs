@@ -4,17 +4,26 @@
 module ProductResult where
 
 import Data.Aeson (KeyValue ((.=)), ToJSON (toEncoding), pairs)
+import Match (Match (price, quantity))
 import Data.Function (on)
 import GHC.Generics (Generic)
+import Data.Int ( Int64 )
+import Data.Word ( Word32 )
 
 data ProductResult = ProductResult
-  { weightedPrice :: Int,
-    volume :: Int
+  { weightedPrice :: Int64,
+    volume :: Word32
   }
   deriving (Generic, Show)
 
 vwap :: ProductResult -> Float
-vwap = ((/) `on` fromIntegral) <$> weightedPrice <*> volume
+vwap = (/) <$> fromIntegral . weightedPrice <*> fromIntegral . volume
+
+matchToResult :: Match -> ProductResult
+matchToResult match = ProductResult {
+  weightedPrice = price match * fromIntegral (quantity match),
+  volume = quantity match
+  }
 
 instance ToJSON ProductResult where
   toEncoding p@(ProductResult weightedPrice volume) =

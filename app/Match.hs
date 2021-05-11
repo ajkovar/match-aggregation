@@ -5,6 +5,8 @@ module Match where
 
 import Data.Csv (FromField (..), FromRecord)
 import GHC.Generics (Generic)
+import Data.Word ( Word32 )
+import Data.Int ( Int64 )
 
 data Side = Bid | Ask deriving (Generic, Show)
 
@@ -18,8 +20,8 @@ data Match = Match
     takerAccountId :: !String,
     productSymbol :: !String,
     takerSide :: !Side,
-    price :: !Int,
-    quantity :: !Int
+    price :: !Int64,
+    quantity :: !Word32
   }
   deriving (Generic, Show)
 
