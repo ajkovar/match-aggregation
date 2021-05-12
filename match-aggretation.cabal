@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               match-aggretation
+name:               match-aggregation
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -21,7 +21,22 @@ maintainer:         ajkovar@gmail.com
 -- category:
 extra-source-files: CHANGELOG.md
 
-executable match-aggretation
+library
+    exposed-modules:
+      Match,
+      ProductResult
+    hs-source-dirs:   app
+    build-depends:    base ^>=4.14.1.0,
+                      vector >= 0.12.1 && < 0.13,
+                      bytestring >= 0.10.10 && < 0.11,
+                      cassava >= 0.5.2 && < 0.6,
+                      monoidal-containers >= 0.6.0 && < 0.7 ,
+                      aeson >= 1.5.3 && < 1.6,
+                      transformers >= 0.5.6 && < 0.6
+    default-language: Haskell2010
+
+
+executable match-aggregation
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
@@ -35,8 +50,21 @@ executable match-aggretation
                       vector >= 0.12.1 && < 0.13,
                       bytestring >= 0.10.10 && < 0.11,
                       cassava >= 0.5.2 && < 0.6,
-                      monoidal-containers,
+                      monoidal-containers >= 0.6.0 && < 0.7,
                       aeson >= 1.5.3 && < 1.6,
-                      transformers
+                      transformers >= 0.5.6 && < 0.6
     hs-source-dirs:   app
     default-language: Haskell2010
+
+
+test-suite match-aggregation-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:      base ^>=4.14.1.0, 
+                      QuickCheck, 
+                      match-aggregation,
+                      vector >= 0.12.1 && < 0.13,
+                      monoidal-containers >= 0.6.0 && < 0.7,
+  default-language: Haskell2010
